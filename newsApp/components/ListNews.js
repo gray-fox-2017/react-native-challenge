@@ -4,7 +4,8 @@ import {
   Text,
   Image,
   Dimensions,
-  ScrollView
+  ScrollView,
+  WebView
 } from 'react-native';
 
 class ListNews extends Component {
@@ -21,10 +22,15 @@ class ListNews extends Component {
             {
               news.map((newInfo, index)=>{
                 return(
-                  <View key={index}>
+                  <View key={index} style={{marginBottom:10}}>
                     <Text style={{fontWeight:'bold'}}>{newInfo.title}</Text>
                     <Text style={{fontSize: 10}}>{newInfo.author} || {newInfo.publishedAt}</Text>
                     <Image style={{width:width, height:height/4}} source={{uri:newInfo.urlToImage}}/>
+                    <Text style={{fontSize: 12}}>{newInfo.description}</Text>
+                    <WebView
+                      source={{uri: newInfo.url}}
+                      style={{marginTop: 10}}
+                    />
                   </View>
                 )
               })

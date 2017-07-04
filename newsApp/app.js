@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F5FCFF',
+    alignItems: 'center'
   },
 });
 
@@ -18,9 +19,9 @@ const styles = StyleSheet.create({
 class newsApp extends Component {
   render() {
     return (
-      <View>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
+      <View style={styles.container}>
+        <Text style={{color:'black'}}>
+          NEWSAPI.ORG
         </Text>
         <Content />
       </View>
