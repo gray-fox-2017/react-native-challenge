@@ -27,10 +27,6 @@ class ListNews extends Component {
                     <Text style={{fontSize: 10}}>{newInfo.author} || {newInfo.publishedAt}</Text>
                     <Image style={{width:width, height:height/4}} source={{uri:newInfo.urlToImage}}/>
                     <Text style={{fontSize: 12}}>{newInfo.description}</Text>
-                    <WebView
-                      source={{uri: newInfo.url}}
-                      style={{marginTop: 10}}
-                    />
                   </View>
                 )
               })

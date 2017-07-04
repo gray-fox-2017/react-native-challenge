@@ -5,8 +5,11 @@ import {
   Text,
   View
 } from 'react-native';
+import store from './store/configurationStore'
+import { Provider } from 'react-redux';
 
 import Content from './components/Content'
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -19,12 +22,14 @@ const styles = StyleSheet.create({
 class newsApp extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={{color:'black'}}>
-          NEWSAPI.ORG
-        </Text>
-        <Content />
-      </View>
+      <Provider store={store}>
+        <View style={styles.container}>
+          <Text style={{color:'black'}}>
+            NEWSAPI.ORG
+          </Text>
+          <Content />
+        </View>
+      </Provider>
     );
   }
 }
