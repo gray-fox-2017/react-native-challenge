@@ -41,7 +41,10 @@ export default class Landing extends React.Component {
             Perkiraan Cuaca
           </Text>
         </Button>
-        <Button style={styles.navigateButton}>
+        <Button
+          style={styles.navigateButton}
+          onPress={() => navigate('Earthquake')}
+        >
           <Text>
             Data Gempa
           </Text>

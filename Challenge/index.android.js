@@ -1,18 +1,21 @@
 
-import React, { Component } from 'react'
+import React from 'react'
 import {
   AppRegistry
 } from 'react-native'
-import {
-  StackNavigator
-} from 'react-navigation'
+import { Provider } from 'react-redux'
 
-import Landing from './src/screens/Landing'
-import Weather from './src/screens/Weather'
+import App from './src/App'
+import store from './src/store'
 
-const App = StackNavigator({
-  Landing: { screen: Landing },
-  Weather: { screen: Weather }
-})
+class Root extends React.Component {
+  render () {
+    return (
+      <Provider store={store}>
+        <App />
+      </Provider>
+    )
+  }
+}
 
-AppRegistry.registerComponent('Challenge', () => App);
+AppRegistry.registerComponent('Challenge', () => Root);
