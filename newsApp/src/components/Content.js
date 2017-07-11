@@ -7,9 +7,13 @@ import {
   Item
 } from 'react-native';
 import axios from 'axios';
+import { connect } from 'react-redux'
 
-import SelectSources from './SelectSources';
-import ListNews from './ListNews';
+import SelectListSources from './SelectSources';
+import ListArticles from './ListNews';
+
+import { ListNews } from '../actions/ListNewsAction'
+import { SelectSources } from '../actions/SelectSourcesAction'
 
 
 const styles= StyleSheet.create({
@@ -19,62 +23,31 @@ const styles= StyleSheet.create({
 })
 
 class Content extends Component {
-  constructor(){
-    super();
-    this.state={
-      language:'',
-      sources:[],
-      news:[]
-    }
-  }
-
-  setDataSources(sources){
-    this.setState({
-      sources
-    })
-  }
-
-  setDataNews(news){
-    this.setState({
-      news
-    })
-  }
-
-  getDataSources(){
-    axios.get('https://newsapi.org/v1/sources?language=en&apiKey=7d0b4c6fd5cf46d18f00aa8c4ffc7c56')
-    .then(response=>{
-      this.setDataSources(response.data.sources)
-    })
-    .catch(err=>{
-      console.log(err);
-    })
-  }
-
-  getDataNews(){
-
-    axios.get(`https://newsapi.org/v1/articles?source=techcrunch&sortBy=latest&apiKey=7d0b4c6fd5cf46d18f00aa8c4ffc7c56`)
-    .then(response=>{
-      this.setDataNews(response.data.articles)
-    })
-    .catch(err=>{
-      console.log(err);
-    })
-  }
-
   render(){
     return(
       <View style={styles.content}>
-        <SelectSources sources={this.state.sources}/>
-        <ListNews news={this.state.news} />
+        {/* <SelectListSources /> */}
+        <ListArticles />
       </View>
     )
   }
 
-  componentDidMount(){
-    this.getDataSources()
-    this.getDataNews()
-  }
+  componentWillMount(){
 
+    this.props.GetArticles()
+    this.props.GetSources()
+  }
 }
 
-export default Content;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    GetArticles: ()=>{
+      dispatch(ListNews())
+    },
+    GetSources: ()=>{
+      dispatch(SelectSources())
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Content);

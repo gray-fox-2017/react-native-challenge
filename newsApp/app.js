@@ -1,32 +1,18 @@
 import React, {Component} from 'react'
 import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
+  AppRegistry
 } from 'react-native';
+import { TabNavigator } from 'react-navigation'
 
-import Content from './src/components/Content'
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#F5FCFF',
-    alignItems: 'center'
-  },
-});
+import HomeScreen from './src/screens/Home'
+import NewsScreen from './src/screens/News'
+import CameraScreen from './src/screens/Camera'
+
+const App = TabNavigator({
+  Home: {screen : HomeScreen},
+  News: {screen : NewsScreen},
+  Camera: {screen : CameraScreen}
+})
 
 
-class newsApp extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={{color:'black'}}>
-          NEWSAPI.ORG
-        </Text>
-        <Content />
-      </View>
-    );
-  }
-}
-
-export default newsApp;
+export default App;

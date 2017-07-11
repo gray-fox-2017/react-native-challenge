@@ -6,23 +6,19 @@
 
 import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
-import { TabNavigator } from 'react-navigation';
-// import { StackNavigator } from 'react-navigation';
+import { Provider } from 'react-redux'
 
-import HomeScreen from './src/screens/Home'
-import NewsScreen from './src/screens/News'
-import CameraScreen from './src/screens/Camera'
+import App from './app'
+import store from './src/store/configStore'
 
-const App = TabNavigator({
-  Home: {screen : HomeScreen},
-  News: {screen : NewsScreen},
-  Camera: {screen : CameraScreen}
-})
+class newsApp extends Component {
+  render(){
+    return(
+      <Provider store={store}>
+        <App />
+      </Provider>
+    )
+  }
+}
 
-// const AppStack = StackNavigator({
-//   Home: {screen : HomeScreen},
-//   Camera: {screen : CameraScreen}
-// })
-
-AppRegistry.registerComponent('newsApp', () => App);
-// AppRegistry.registerComponent('newsApp', () => AppStack);
+AppRegistry.registerComponent('newsApp', () => newsApp);

@@ -4,6 +4,9 @@ import { View } from 'react-native';
 import Content from '../components/Content';
 
 class NewsScreen extends Component {
+  static navigationOptions = {
+    tabBarLabel: 'News',
+  }
   render(){
     return(
       <View>
